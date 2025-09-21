@@ -3,7 +3,53 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import heroImage from "@/assets/hero-image.jpg";
+
+const travelPrograms = [
+  {
+    id: 1,
+    title: "Горы Кавказа",
+    duration: "7 дней",
+    description: "Треккинг в горах с восхождением на вершину. Испытайте себя и научитесь поддерживать друг друга.",
+    icon: "🏔️"
+  },
+  {
+    id: 2,
+    title: "Сплав по реке",
+    duration: "5 дней", 
+    description: "Водные приключения на рафтах с рыбалкой и вечерними посиделками у костра.",
+    icon: "🚣"
+  },
+  {
+    id: 3,
+    title: "Выживание",
+    duration: "4 дня",
+    description: "Интенсивный курс выживания в дикой природе. Откройте в себе и сыне скрытые ресурсы.",
+    icon: "🔥"
+  },
+  {
+    id: 4,
+    title: "Конные походы",
+    duration: "6 дней",
+    description: "Путешествие верхом через живописные долины. Научитесь доверять друг другу и лошадям.",
+    icon: "🐎"
+  },
+  {
+    id: 5,
+    title: "Морское приключение",
+    duration: "8 дней",
+    description: "Парусный поход с изучением навигации и морского дела. Покорите морскую стихию вместе.",
+    icon: "⛵"
+  },
+  {
+    id: 6,
+    title: "Зимний лагерь",
+    duration: "5 дней",
+    description: "Выживание в зимних условиях, строительство иглу и разведение костра в снегу.",
+    icon: "❄️"
+  }
+];
 
 const Index = () => {
   return (
@@ -118,69 +164,36 @@ const Index = () => {
               Наши программы
             </h2>
             
-            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              <Card className="h-full">
-                <CardHeader>
-                  <div className="h-48 bg-primary/10 rounded-lg mb-4 flex items-center justify-center">
-                    <span className="text-4xl">🏔️</span>
-                  </div>
-                  <CardTitle className="font-merriweather text-primary">
-                    Горы Кавказа
-                  </CardTitle>
-                  <Badge className="w-fit">7 дней</Badge>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-foreground mb-4">
-                    Треккинг в горах с восхождением на вершину. 
-                    Испытайте себя и научитесь поддерживать друг друга.
-                  </p>
-                  <Button variant="outline" className="w-full">
-                    Подробнее
-                  </Button>
-                </CardContent>
-              </Card>
-              
-              <Card className="h-full">
-                <CardHeader>
-                  <div className="h-48 bg-primary/10 rounded-lg mb-4 flex items-center justify-center">
-                    <span className="text-4xl">🚣</span>
-                  </div>
-                  <CardTitle className="font-merriweather text-primary">
-                    Сплав по реке
-                  </CardTitle>
-                  <Badge className="w-fit">5 дней</Badge>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-foreground mb-4">
-                    Водные приключения на рафтах с рыбалкой и 
-                    вечерними посиделками у костра.
-                  </p>
-                  <Button variant="outline" className="w-full">
-                    Подробнее
-                  </Button>
-                </CardContent>
-              </Card>
-              
-              <Card className="h-full">
-                <CardHeader>
-                  <div className="h-48 bg-primary/10 rounded-lg mb-4 flex items-center justify-center">
-                    <span className="text-4xl">🔥</span>
-                  </div>
-                  <CardTitle className="font-merriweather text-primary">
-                    Выживание
-                  </CardTitle>
-                  <Badge className="w-fit">4 дня</Badge>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-foreground mb-4">
-                    Интенсивный курс выживания в дикой природе. 
-                    Откройте в себе и сыне скрытые ресурсы.
-                  </p>
-                  <Button variant="outline" className="w-full">
-                    Подробнее
-                  </Button>
-                </CardContent>
-              </Card>
+            <div className="relative max-w-6xl mx-auto">
+              <Carousel className="w-full">
+                <CarouselContent className="-ml-2 md:-ml-4">
+                  {travelPrograms.map((program) => (
+                    <CarouselItem key={program.id} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+                      <Card className="h-full">
+                        <CardHeader>
+                          <div className="h-48 bg-primary/10 rounded-lg mb-4 flex items-center justify-center">
+                            <span className="text-4xl">{program.icon}</span>
+                          </div>
+                          <CardTitle className="font-merriweather text-primary">
+                            {program.title}
+                          </CardTitle>
+                          <Badge className="w-fit">{program.duration}</Badge>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-foreground mb-4">
+                            {program.description}
+                          </p>
+                          <Button variant="outline" className="w-full">
+                            Подробнее
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="hidden md:flex -left-12" />
+                <CarouselNext className="hidden md:flex -right-12" />
+              </Carousel>
             </div>
           </div>
         </section>
